@@ -12,7 +12,6 @@ namespace CubosBankAPI.Domain.Entities
         public DateTime CreatedAt { get; private set; }
         public DateTime UpdatedAt { get; private set; }
 
-
         public BaseEntity()
         {
             CreatedAt = DateTime.Now;
