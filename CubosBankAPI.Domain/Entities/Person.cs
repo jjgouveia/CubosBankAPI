@@ -8,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace CubosBankAPI.Domain.Entities
 {
-    public sealed class Person
+    public sealed class Person : BaseEntity
     {
-        public int Id { get; private set; }
         public string Name { get; private set; }
         public string Document { get; private set; }
         public string Password { get; private set; }
@@ -29,10 +28,6 @@ namespace CubosBankAPI.Domain.Entities
             Name = name;
             Document = document;
             Password = password;
-        }   
-
-
-
-        
+        }           
     }
 }
