@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CubosBankAPI.Application\CubosBankAPI.Application.csproj" />
+    <ProjectReference Include="..\CubosBankAPI.Domain\CubosBankAPI.Domain.csproj" />
+    <ProjectReference Include="..\CubosBankAPI.infra.Data\CubosBankAPI.Infra.Data.csproj" />
+  </ItemGroup>
+
 </Project>
