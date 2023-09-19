@@ -9,27 +9,29 @@ namespace CubosBankAPI.Domain.Entities
 {
     public sealed class Account : BaseEntity
     {
-        public string OwnerId { get; private set; }
+        public string PersonId { get; private set; }
         public string Number { get; private set; }
         public string Branch { get; private set; }
         public decimal Balance { get; private set; }
+        public Person Person { get; set; }
         public ICollection<Card> Cards { get; set; }
+        public ICollection<Transaction> Transactions { get; set; }
 
-        public Account(string number, string branch, string ownerId)
+        public Account(string number, string branch, string personId)
         {
-            Validations(number, branch, ownerId);
+            Validations(number, branch, personId);
             this.Balance = 0;
         }
 
-        private void Validations(string number, string branch, string ownerId)
+        private void Validations(string number, string branch, string personId)
         {
             DomainValidationException.When(string.IsNullOrEmpty(number), "Number is mandatory.");
             DomainValidationException.When(string.IsNullOrEmpty(branch), "Branch is mandatory.");
-            DomainValidationException.When(string.IsNullOrEmpty(ownerId), "OwnerId is mandatory.");
+            DomainValidationException.When(string.IsNullOrEmpty(PersonId), "PersonId is mandatory.");
 
             Number = number;
             Branch = branch;
-            OwnerId = ownerId;
+            PersonId = personId;
         }   
     }
 }

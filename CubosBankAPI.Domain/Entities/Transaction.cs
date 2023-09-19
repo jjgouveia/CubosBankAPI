@@ -11,11 +11,14 @@ namespace CubosBankAPI.Domain.Entities
     {
         public string AccountId { get; private set; }
         public string CardId { get; private set; }
+        public string PersonId { get; private set; }
         public decimal Value { get; private set; }
+        public CardType CardType { get; private set; }
         public string Description { get; private set; }
         public DateTime Date { get; private set; }
         public Account Account { get; set; }
         public Card Card { get; set; }
+        public Person Person { get; set; }
 
         public Transaction(string accountId, string cardId, decimal value, string description)
         {

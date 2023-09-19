@@ -14,7 +14,7 @@ namespace CubosBankAPI.Domain.Entities
         public string Document { get; private set; }
         public string Password { get; private set; }
 
-        public ICollection<Account> Account { get; set; }
+        public ICollection<Account> Accounts { get; set; }
         public ICollection<Card> Cards { get; set; }
         public ICollection<Transaction> Transactions { get; set; }
 
