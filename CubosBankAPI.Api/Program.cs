@@ -1,3 +1,6 @@
+using CubosBankAPI.Infra.Data.Context;
+using Microsoft.EntityFrameworkCore;
+
 namespace CubosBankAPI.Api
 {
     public class Program
@@ -12,6 +15,9 @@ namespace CubosBankAPI.Api
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddEntityFrameworkNpgsql().AddDbContext<CubosBankDbContext>(opt =>
+                opt.UseNpgsql(builder.Configuration.GetConnectionString("CubosBankDbConnection")));
 
             var app = builder.Build();
 

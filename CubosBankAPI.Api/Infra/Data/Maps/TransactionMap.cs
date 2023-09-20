@@ -21,7 +21,6 @@ namespace CubosBankAPI.Infra.Data.Maps
             builder.Property(x => x.PersonId).HasColumnName("person_id").IsRequired();
             builder.Property(x => x.Value).HasColumnName("amount").IsRequired();
             builder.Property(x => x.CardType).HasColumnName("type").IsRequired();
-            builder.Property(x => x.Date).HasColumnName("date").IsRequired();
 
             builder.HasOne(x => x.Account).WithMany(x => x.Transactions).HasForeignKey(x => x.AccountId);
             builder.HasOne(x => x.Person).WithMany(x => x.Transactions).HasForeignKey(x => x.PersonId);

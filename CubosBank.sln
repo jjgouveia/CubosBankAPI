@@ -3,15 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CubosBankAPI.Domain", "CubosBankAPI.Domain\CubosBankAPI.Domain.csproj", "{7CB41BEE-407A-4BC9-80BF-5D999D7AC9FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CubosBankAPI.Domain", "CubosBankAPI.Domain\CubosBankAPI.Domain.csproj", "{7CB41BEE-407A-4BC9-80BF-5D999D7AC9FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CubosBankAPI.Infra.Data", "CubosBankAPI.infra.Data\CubosBankAPI.Infra.Data.csproj", "{FAAEFA32-7DB6-48F4-A696-01804A35BFCF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CubosBankAPI.Application", "CubosBankAPI.Application\CubosBankAPI.Application.csproj", "{64AFBCA8-6ACE-4398-ACB8-F69C5E80D281}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CubosBankAPI.Application", "CubosBankAPI.Application\CubosBankAPI.Application.csproj", "{64AFBCA8-6ACE-4398-ACB8-F69C5E80D281}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CubosBankAPI.Infra.IoC", "CubosBankAPI.IoC\CubosBankAPI.Infra.IoC.csproj", "{55DBDA1A-62C3-4EF1-A31C-2060C8C63163}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CubosBankAPI.Infra.IoC", "CubosBankAPI.IoC\CubosBankAPI.Infra.IoC.csproj", "{55DBDA1A-62C3-4EF1-A31C-2060C8C63163}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CubosBankAPI.Api", "CubosBankAPI.Api\CubosBankAPI.Api.csproj", "{7D6F2793-6A78-49A1-8B2B-757AD7C8E3D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CubosBankAPI.Api", "CubosBankAPI.Api\CubosBankAPI.Api.csproj", "{7D6F2793-6A78-49A1-8B2B-757AD7C8E3D4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +21,6 @@ Global
 		{7CB41BEE-407A-4BC9-80BF-5D999D7AC9FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7CB41BEE-407A-4BC9-80BF-5D999D7AC9FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7CB41BEE-407A-4BC9-80BF-5D999D7AC9FC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FAAEFA32-7DB6-48F4-A696-01804A35BFCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FAAEFA32-7DB6-48F4-A696-01804A35BFCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FAAEFA32-7DB6-48F4-A696-01804A35BFCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FAAEFA32-7DB6-48F4-A696-01804A35BFCF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{64AFBCA8-6ACE-4398-ACB8-F69C5E80D281}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{64AFBCA8-6ACE-4398-ACB8-F69C5E80D281}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{64AFBCA8-6ACE-4398-ACB8-F69C5E80D281}.Release|Any CPU.ActiveCfg = Release|Any CPU

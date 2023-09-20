@@ -13,23 +13,28 @@ namespace CubosBankAPI.Domain.Entities
         public string Number { get; private set; }
         public string CVV { get; private set; }
         public decimal Balance { get; private set; }
-        public string AccountId { get; private set; }
-        public string PersonId { get; private set; }
+        public Guid AccountId { get; private set; }
+        public Guid PersonId { get; private set; }
         public CardType CardType { get; set; }
         public Account Account { get; set; }
         public Person Person { get; set; }
 
-        public Card(CardType cardType, string number, string cvv, string accountId)
+        private Card()
+        {
+            Balance = 0;
+        }
+
+        public Card(CardType cardType, string number, string cvv, Guid accountId)
         {
             Validations(number, cvv, accountId, cardType);
             Balance = 0;
         }
 
-        private void Validations(string number, string cvv, string accountId, CardType cardType)
+        private void Validations(string number, string cvv, Guid accountId, CardType cardType)
         {
             DomainValidationException.When(string.IsNullOrEmpty(number), "Number is mandatory.");
             DomainValidationException.When(string.IsNullOrEmpty(cvv), "CVV is mandatory.");
-            DomainValidationException.When(string.IsNullOrEmpty(accountId), "AccountId is mandatory.");
+            DomainValidationException.When(accountId == Guid.Empty, "AccountId is mandatory.");            
             DomainValidationException.When(Enum.IsDefined(typeof(CardType), cardType), "CardType is mandatory.");
 
             Number = number;

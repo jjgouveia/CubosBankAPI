@@ -9,7 +9,7 @@ namespace CubosBankAPI.Domain.Entities
 {
     public sealed class Account : BaseEntity
     {
-        public string PersonId { get; private set; }
+        public Guid PersonId { get; private set; }
         public string Number { get; private set; }
         public string Branch { get; private set; }
         public decimal Balance { get; private set; }
@@ -17,17 +17,22 @@ namespace CubosBankAPI.Domain.Entities
         public ICollection<Card> Cards { get; set; }
         public ICollection<Transaction> Transactions { get; set; }
 
-        public Account(string number, string branch, string personId)
+        public Account(string number, string branch, Guid personId)
         {
             Validations(number, branch, personId);
             this.Balance = 0;
         }
 
-        private void Validations(string number, string branch, string personId)
+        private Account()
+        {
+            this.Balance = 0;
+        }
+
+        private void Validations(string number, string branch, Guid personId)
         {
             DomainValidationException.When(string.IsNullOrEmpty(number), "Number is mandatory.");
             DomainValidationException.When(string.IsNullOrEmpty(branch), "Branch is mandatory.");
-            DomainValidationException.When(string.IsNullOrEmpty(PersonId), "PersonId is mandatory.");
+            DomainValidationException.When(personId == Guid.Empty, "PersonId is mandatory.");
 
             Number = number;
             Branch = branch;
