@@ -24,4 +24,8 @@
     <ProjectReference Include="..\CubosBankAPI.IoC\CubosBankAPI.Infra.IoC.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

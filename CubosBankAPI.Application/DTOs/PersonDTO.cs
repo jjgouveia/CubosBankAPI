@@ -12,5 +12,7 @@ namespace CubosBankAPI.Application.DTOs
         public string Name { get; set; }
         public string Document { get; set; }
         public string Password { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
     }
 }

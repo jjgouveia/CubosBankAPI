@@ -19,8 +19,8 @@ namespace CubosBankAPI.Api.Migrations
                     name = table.Column<string>(type: "character varying(128)", maxLength: 128, nullable: false),
                     document = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
                     password = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
-                    created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
                 },
                 constraints: table =>
                 {
@@ -36,8 +36,8 @@ namespace CubosBankAPI.Api.Migrations
                     number = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
                     branch = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
                     balance = table.Column<decimal>(type: "numeric", nullable: false),
-                    created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
                 },
                 constraints: table =>
                 {
@@ -61,8 +61,8 @@ namespace CubosBankAPI.Api.Migrations
                     account_id = table.Column<Guid>(type: "uuid", nullable: false),
                     person_id = table.Column<Guid>(type: "uuid", nullable: false),
                     CardType = table.Column<int>(type: "integer", nullable: false),
-                    created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
                 },
                 constraints: table =>
                 {
@@ -92,8 +92,8 @@ namespace CubosBankAPI.Api.Migrations
                     amount = table.Column<decimal>(type: "numeric", nullable: false),
                     type = table.Column<int>(type: "integer", nullable: false),
                     Description = table.Column<string>(type: "text", nullable: false),
-                    created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
                 },
                 constraints: table =>
                 {
