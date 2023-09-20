@@ -9,5 +9,6 @@ namespace CubosBankAPI.Domain.Repositories
         Task<Person> CreateAsync(Person person);
         Task EditAsync(Person person);
         Task DeleteAsync(Person person);
+        Task<bool> DocumentExists(string document);
     }
 }

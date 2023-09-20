@@ -32,6 +32,11 @@ namespace CubosBankAPI.Infra.Data.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public async Task<bool> DocumentExists(string document)
+        {   
+            return await _context.People.AnyAsync(p => p.Document == document);
+        }
+
         public async Task EditAsync(Person person)
         {
             _context.Update(person);

@@ -19,6 +19,7 @@ namespace CubosBankAPI.Api
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddInfrastructure(builder.Configuration);
+            builder.Services.AddServices(builder.Configuration);
             
             var app = builder.Build();
 

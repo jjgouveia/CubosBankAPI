@@ -35,6 +35,6 @@ namespace CubosBankAPI.Domain.Entities
             Name = name;
             Document = document;
             Password = password;
-        }           
+        }
     }
 }
