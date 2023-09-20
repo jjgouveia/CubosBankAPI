@@ -15,6 +15,7 @@ namespace CubosBankAPI.Infra.Data.Maps
         {
            builder.ToTable("people");
            builder.HasKey(x => x.Id);
+           builder.HasIndex(u => u.Document).IsUnique();
 
            builder.Property(x => x.Id).HasColumnName("id");
            builder.Property(x => x.Name).HasColumnName("name").HasMaxLength(128).IsRequired();

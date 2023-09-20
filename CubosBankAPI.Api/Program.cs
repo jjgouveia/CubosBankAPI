@@ -1,5 +1,6 @@
 using CubosBankAPI.Api.Infra.IoC;
 using CubosBankAPI.Infra.Data.Context;
+using CubosBankAPI.Infra.IoC.Teste;
 using Microsoft.EntityFrameworkCore;
 
 namespace CubosBankAPI.Api
@@ -17,10 +18,6 @@ namespace CubosBankAPI.Api
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            /*
-            builder.Services.AddEntityFrameworkNpgsql().AddDbContext<CubosBankDbContext>(opt =>
-                opt.UseNpgsql(builder.Configuration.GetConnectionString("CubosBankDbConnection
-            */
             builder.Services.AddInfrastructure(builder.Configuration);
             
             var app = builder.Build();

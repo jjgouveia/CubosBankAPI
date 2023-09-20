@@ -21,11 +21,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CubosBankAPI.IoC\CubosBankAPI.Infra.IoC.csproj" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Migrations\" />
+    <ProjectReference Include="..\CubosBankAPI.IoC\CubosBankAPI.Infra.IoC.csproj" />
   </ItemGroup>
 
 </Project>

@@ -13,8 +13,6 @@ namespace CubosBankAPI.Application.Services
         public string Message { get; set; }
         public ICollection<ErrorValidation> Errors { get; set; }
 
-
-
         public static ResultService RequestError(string message, ValidationResult validationResult)
         {
             return new ResultService
@@ -25,7 +23,7 @@ namespace CubosBankAPI.Application.Services
             };
         }
 
-        public static ResultService RequestError<T>(string message, ValidationResult validationResult)
+        public static ResultService<T> RequestError<T>(string message, ValidationResult validationResult)
         {
             return new ResultService<T>
             {
@@ -59,6 +57,15 @@ namespace CubosBankAPI.Application.Services
             {
                 Message = message,
                 Success = true
+            };
+        }
+
+        public static ResultService<T> Ok<T>(string message)
+        {
+            return new ResultService<T>
+            {
+                Message = message,
+                Success = true,
             };
         }
     }
