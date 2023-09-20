@@ -11,6 +11,6 @@ namespace CubosBankAPI.Application.Services.Interfaces
     public interface IAccountService
     {
         Task<AccountDTOResponse> CreateAccount(Account account);
-        Task<List<Account>> GetAllAccountsByPersonId(Guid personId);
+        Task<List<AccountDTOResponse>> GetAllAccountsByPersonId(Guid personId);
     }
 }

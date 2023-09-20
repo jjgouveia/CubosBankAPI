@@ -51,9 +51,19 @@ namespace CubosBankAPI.Application.Services
             return accountCreatedDTO;
         }
 
-        public Task<List<Account>> GetAllAccountsByPersonId(Guid personId)
+        public Task<List<AccountDTOResponse>> GetAllAccountsByPersonId(Guid personId)
         {  
-            return _accountRepository.GetAllByPeopleId(personId);
+           var accounts = _accountRepository.GetAllByPeopleId(personId);
+            List<AccountDTOResponse> accountsDTO = new();
+
+            foreach (var account in accounts.Result)
+            {
+                accountsDTO.Add(new AccountDTOResponse(account.Id, account.Branch, account.Number, account.CreatedAt, account.UpdatedAt));
+            }
+
+            return Task.FromResult(accountsDTO);
+
+          
             
         }
     }
