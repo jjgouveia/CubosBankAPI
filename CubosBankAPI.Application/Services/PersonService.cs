@@ -35,7 +35,7 @@ namespace CubosBankAPI.Application.Services
             bool documentExists = await _personRepository.DocumentExists(person.Document);
             if (documentExists)
             {
-                  throw new Exception("Documento já cadastrado.");
+                  throw new Exception("Documento já cadastrado. Revise as informações e tente novamente.");
             }
 
 
