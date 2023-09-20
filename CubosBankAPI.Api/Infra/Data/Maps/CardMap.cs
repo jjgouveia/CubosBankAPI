@@ -18,9 +18,11 @@ namespace CubosBankAPI.Infra.Data.Maps
 
             builder.Property(x => x.Id).HasColumnName("id");
             builder.Property(x => x.Number).HasColumnName("number").HasMaxLength(20).IsRequired();
-            builder.Property(x => x.CVV).HasColumnName("security_code").HasMaxLength(3).IsRequired();
+            builder.Property(x => x.CVV).HasColumnName("cvv").HasMaxLength(3).IsRequired();
             builder.Property(x => x.AccountId).HasColumnName("account_id").IsRequired();
             builder.Property(x => x.PersonId).HasColumnName("person_id").IsRequired();
+            builder.Property(x => x.CardType).HasColumnName("card_type").IsRequired();
+            builder.Property(x => x.Balance).HasColumnName("balance").IsRequired();
 
             builder.HasOne(x => x.Account).WithMany(x => x.Cards).HasForeignKey(x => x.AccountId);
             builder.HasOne(x => x.Person).WithMany(x => x.Cards).HasForeignKey(x => x.PersonId);        

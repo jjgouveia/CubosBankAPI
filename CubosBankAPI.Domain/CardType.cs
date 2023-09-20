@@ -8,7 +8,7 @@ namespace CubosBankAPI.Domain
 {
     public enum CardType
     {
-        Fisico,
+        Physical,
         Virtual
     }
 }

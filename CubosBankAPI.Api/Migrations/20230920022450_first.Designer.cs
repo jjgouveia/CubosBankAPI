@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CubosBankAPI.Api.Migrations
 {
     [DbContext(typeof(CubosBankDbContext))]
-    [Migration("20230920012437_first")]
+    [Migration("20230920022450_first")]
     partial class first
     {
         /// <inheritdoc />
@@ -83,16 +83,18 @@ namespace CubosBankAPI.Api.Migrations
                         .HasColumnName("account_id");
 
                     b.Property<decimal>("Balance")
-                        .HasColumnType("numeric");
+                        .HasColumnType("numeric")
+                        .HasColumnName("balance");
 
                     b.Property<string>("CVV")
                         .IsRequired()
                         .HasMaxLength(3)
                         .HasColumnType("character varying(3)")
-                        .HasColumnName("security_code");
+                        .HasColumnName("cvv");
 
                     b.Property<int>("CardType")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("card_type");
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
@@ -178,13 +180,6 @@ namespace CubosBankAPI.Api.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("account_id");
 
-                    b.Property<Guid>("CardId")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("CardType")
-                        .HasColumnType("integer")
-                        .HasColumnName("type");
-
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
@@ -193,11 +188,11 @@ namespace CubosBankAPI.Api.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("description");
 
-                    b.Property<Guid>("PersonId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("person_id");
+                    b.Property<Guid?>("PersonId")
+                        .HasColumnType("uuid");
 
                     b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAddOrUpdate()
@@ -212,8 +207,6 @@ namespace CubosBankAPI.Api.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AccountId");
-
-                    b.HasIndex("CardId");
 
                     b.HasIndex("PersonId");
 
@@ -258,23 +251,11 @@ namespace CubosBankAPI.Api.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CubosBankAPI.Domain.Entities.Card", "Card")
-                        .WithMany()
-                        .HasForeignKey("CardId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CubosBankAPI.Domain.Entities.Person", "Person")
+                    b.HasOne("CubosBankAPI.Domain.Entities.Person", null)
                         .WithMany("Transactions")
-                        .HasForeignKey("PersonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PersonId");
 
                     b.Navigation("Account");
-
-                    b.Navigation("Card");
-
-                    b.Navigation("Person");
                 });
 
             modelBuilder.Entity("CubosBankAPI.Domain.Entities.Account", b =>

@@ -56,11 +56,11 @@ namespace CubosBankAPI.Api.Migrations
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false),
                     number = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
-                    security_code = table.Column<string>(type: "character varying(3)", maxLength: 3, nullable: false),
-                    Balance = table.Column<decimal>(type: "numeric", nullable: false),
+                    cvv = table.Column<string>(type: "character varying(3)", maxLength: 3, nullable: false),
+                    balance = table.Column<decimal>(type: "numeric", nullable: false),
                     account_id = table.Column<Guid>(type: "uuid", nullable: false),
                     person_id = table.Column<Guid>(type: "uuid", nullable: false),
-                    CardType = table.Column<int>(type: "integer", nullable: false),
+                    card_type = table.Column<int>(type: "integer", nullable: false),
                     created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
                 },
@@ -87,11 +87,9 @@ namespace CubosBankAPI.Api.Migrations
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false),
                     account_id = table.Column<Guid>(type: "uuid", nullable: false),
-                    CardId = table.Column<Guid>(type: "uuid", nullable: false),
-                    person_id = table.Column<Guid>(type: "uuid", nullable: false),
                     amount = table.Column<decimal>(type: "numeric", nullable: false),
-                    type = table.Column<int>(type: "integer", nullable: false),
-                    Description = table.Column<string>(type: "text", nullable: false),
+                    description = table.Column<string>(type: "text", nullable: false),
+                    PersonId = table.Column<Guid>(type: "uuid", nullable: true),
                     created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
                 },
@@ -105,17 +103,10 @@ namespace CubosBankAPI.Api.Migrations
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_transactions_cards_CardId",
-                        column: x => x.CardId,
-                        principalTable: "cards",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_transactions_people_person_id",
-                        column: x => x.person_id,
+                        name: "FK_transactions_people_PersonId",
+                        column: x => x.PersonId,
                         principalTable: "people",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "id");
                 });
 
             migrationBuilder.CreateIndex(
@@ -139,24 +130,19 @@ namespace CubosBankAPI.Api.Migrations
                 column: "account_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_transactions_CardId",
+                name: "IX_transactions_PersonId",
                 table: "transactions",
-                column: "CardId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_transactions_person_id",
-                table: "transactions",
-                column: "person_id");
+                column: "PersonId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "transactions");
+                name: "cards");
 
             migrationBuilder.DropTable(
-                name: "cards");
+                name: "transactions");
 
             migrationBuilder.DropTable(
                 name: "accounts");

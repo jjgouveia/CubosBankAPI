@@ -24,7 +24,6 @@ namespace CubosBankAPI.Infra.Data.Maps
 
             builder.HasOne(x => x.Person).WithMany(x => x.Accounts).HasForeignKey(x => x.PersonId);
             builder.HasMany(x => x.Cards).WithOne(x => x.Account).HasForeignKey(x => x.AccountId);
-            builder.HasMany(x => x.Transactions).WithOne(x => x.Account).HasForeignKey(x => x.PersonId);
         }
     }
 }

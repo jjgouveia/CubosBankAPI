@@ -13,6 +13,7 @@ namespace CubosBankAPI.Domain.Entities
         public string Number { get; private set; }
         public string Branch { get; private set; }
         public decimal Balance { get; private set; }
+
         public Person Person { get; set; }
         public ICollection<Card> Cards { get; set; }
         public ICollection<Transaction> Transactions { get; set; }
