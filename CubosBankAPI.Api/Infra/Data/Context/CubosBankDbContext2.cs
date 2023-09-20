@@ -18,6 +18,23 @@ namespace CubosBankAPI.Infra.Data.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            var baseEntityTypes = modelBuilder.Model.GetEntityTypes()
+                .Where(e => typeof(BaseEntity).IsAssignableFrom(e.ClrType));
+
+            foreach (var entityType in baseEntityTypes)
+            {
+                modelBuilder.Entity(entityType.ClrType)
+                    .Property<DateTime>("CreatedAt")
+                    .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                    .ValueGeneratedOnAdd();
+
+                modelBuilder.Entity(entityType.ClrType)
+                    .Property<DateTime>("UpdatedAt")
+                    .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                    .ValueGeneratedOnAddOrUpdate();
+            }
+
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(CubosBankDbContext).Assembly);
         }
     }

@@ -8,21 +8,19 @@ using System.Threading.Tasks;
 
 namespace CubosBankAPI.Domain.Entities
 {
-    public class BaseEntity
+    public abstract class BaseEntity
     {
         [Key]
         [Column("id")]
-        public Guid Id { get; private set; }
+        public Guid Id { get; set; }
         [Column("created_at")]
-        public DateTime CreatedAt { get; private set; }
+        public DateTime CreatedAt { get; set; }
         [Column("updated_at")]
-        public DateTime UpdatedAt { get; private set; }
+        public DateTime UpdatedAt { get; set; }
 
         public BaseEntity()
         {
             Id = Guid.NewGuid();
-            CreatedAt = DateTime.Now;
-            UpdatedAt = DateTime.Now;
         }
     }
 }
