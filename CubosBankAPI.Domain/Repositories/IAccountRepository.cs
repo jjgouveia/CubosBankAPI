@@ -16,5 +16,6 @@ namespace CubosBankAPI.Domain.Repositories
         Task<Account> GetByIdAsync(Guid id);
         Task EditAsync(Account account);
         Task DeleteAsync(Account account);
+        Task<bool> AccountExists(string number);
     }
 }

@@ -19,6 +19,11 @@ namespace CubosBankAPI.Infra.Data.Repositories
             _context = db;
         }
 
+        public async Task<bool> AccountExists(string number)
+        {
+            return await _context.Accounts.AnyAsync(p => p.Number == number);
+        }
+
         public async Task<Account> CreateAsync(Account account)
         {
             _context.Add(account);

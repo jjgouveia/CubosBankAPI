@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CubosBankAPI.Api.Migrations
 {
     [DbContext(typeof(CubosBankDbContext))]
-    [Migration("20230920044032_second")]
-    partial class second
+    [Migration("20230920195032_s")]
+    partial class s
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,8 +38,7 @@ namespace CubosBankAPI.Api.Migrations
 
                     b.Property<string>("Branch")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)")
+                        .HasColumnType("text")
                         .HasColumnName("branch");
 
                     b.Property<DateTime>("CreatedAt")
@@ -50,8 +49,8 @@ namespace CubosBankAPI.Api.Migrations
 
                     b.Property<string>("Number")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)")
+                        .HasMaxLength(9)
+                        .HasColumnType("character varying(9)")
                         .HasColumnName("number");
 
                     b.Property<Guid>("PersonId")
@@ -65,6 +64,9 @@ namespace CubosBankAPI.Api.Migrations
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Number")
+                        .IsUnique();
 
                     b.HasIndex("PersonId");
 
@@ -165,6 +167,9 @@ namespace CubosBankAPI.Api.Migrations
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Document")
+                        .IsUnique();
 
                     b.ToTable("people", (string)null);
                 });

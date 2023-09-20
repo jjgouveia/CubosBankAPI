@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CubosBankAPI.Api.Migrations
 {
     /// <inheritdoc />
-    public partial class first : Migration
+    public partial class s : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -33,8 +33,8 @@ namespace CubosBankAPI.Api.Migrations
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false),
                     person_id = table.Column<Guid>(type: "uuid", nullable: false),
-                    number = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
-                    branch = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    branch = table.Column<string>(type: "text", nullable: false),
+                    number = table.Column<string>(type: "character varying(9)", maxLength: 9, nullable: false),
                     balance = table.Column<decimal>(type: "numeric", nullable: false),
                     created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
@@ -110,6 +110,12 @@ namespace CubosBankAPI.Api.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_accounts_number",
+                table: "accounts",
+                column: "number",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_accounts_person_id",
                 table: "accounts",
                 column: "person_id");
@@ -123,6 +129,12 @@ namespace CubosBankAPI.Api.Migrations
                 name: "IX_cards_person_id",
                 table: "cards",
                 column: "person_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_people_document",
+                table: "people",
+                column: "document",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_transactions_account_id",

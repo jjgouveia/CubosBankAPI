@@ -35,8 +35,7 @@ namespace CubosBankAPI.Api.Migrations
 
                     b.Property<string>("Branch")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)")
+                        .HasColumnType("text")
                         .HasColumnName("branch");
 
                     b.Property<DateTime>("CreatedAt")
@@ -47,8 +46,8 @@ namespace CubosBankAPI.Api.Migrations
 
                     b.Property<string>("Number")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)")
+                        .HasMaxLength(9)
+                        .HasColumnType("character varying(9)")
                         .HasColumnName("number");
 
                     b.Property<Guid>("PersonId")
@@ -62,6 +61,9 @@ namespace CubosBankAPI.Api.Migrations
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Number")
+                        .IsUnique();
 
                     b.HasIndex("PersonId");
 

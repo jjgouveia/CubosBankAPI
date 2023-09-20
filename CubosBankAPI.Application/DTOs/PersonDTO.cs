@@ -17,13 +17,13 @@ namespace CubosBankAPI.Application.DTOs
             Password = password;
         }
 
-        public PersonDTO(Guid id, string name, string document, string password)
-        {
-            Id = id;
-            Name = name;
-            Document = document;
-            Password = password;
-        }
+        //public PersonDTO(Guid id, string name, string document, string password)
+        //{
+        //    Id = id;
+        //    Name = name;
+        //    Document = document;
+        //    Password = password;
+        //}
 
         public Guid Id { get; set; }
         public string Name { get; set; }

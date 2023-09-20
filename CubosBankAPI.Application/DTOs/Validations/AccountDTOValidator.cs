@@ -18,7 +18,7 @@ namespace CubosBankAPI.Application.DTOs.Validations
             RuleFor(p => p.Number)
                 .NotEmpty().NotNull()
                 .WithMessage("O número da conta é obrigatório")
-                .Length(6).WithMessage("O número da conta deve ter 6 caracteres");
+                .Length(9).WithMessage("O número da conta deve ter 6 caracteres");
 
             RuleFor(p => p.Branch)
                 .NotEmpty().NotNull()

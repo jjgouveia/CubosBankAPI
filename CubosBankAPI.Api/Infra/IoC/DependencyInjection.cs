@@ -29,7 +29,7 @@ namespace CubosBankAPI.Api.Infra.IoC
                            options.UseNpgsql(configuration.GetConnectionString("CubosBankDbConnection")));
 
             services.AddScoped<IPersonService, PersonService>();
-            //services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IAccountService, AccountService>();
             //services.AddScoped<ICardService, CardService>();
             //services.AddScoped<ITransactionService, TransactionService>();
 

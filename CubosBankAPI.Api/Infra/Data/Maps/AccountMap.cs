@@ -15,10 +15,11 @@ namespace CubosBankAPI.Infra.Data.Maps
         {
             builder.ToTable("accounts");
             builder.HasKey(x => x.Id);
+            builder.HasIndex(x => x.Number).IsUnique();
 
             builder.Property(x => x.Id).HasColumnName("id");
-            builder.Property(x => x.Number).HasColumnName("number").HasMaxLength(20).IsRequired();
-            builder.Property(x => x.Branch).HasColumnName("branch").HasMaxLength(20).IsRequired();
+            builder.Property(x => x.Branch).HasColumnName("branch").HasMaxLength(3).IsRequired();
+            builder.Property(x => x.Number).HasColumnName("number").HasMaxLength(9).IsRequired();
             builder.Property(x => x.Balance).HasColumnName("balance").IsRequired();
             builder.Property(x => x.PersonId).HasColumnName("person_id").IsRequired();
 
