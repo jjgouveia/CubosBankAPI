@@ -43,6 +43,9 @@ namespace CubosBankAPI.Domain.Entities
             Branch = branch;
             Number = number;
             PersonId = personId;
-        }   
+        } 
+        
     }
+
+    
 }

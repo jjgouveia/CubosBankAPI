@@ -50,5 +50,11 @@ namespace CubosBankAPI.Application.Services
             AccountDTOResponse accountCreatedDTO = new(accountCreated.Id, accountCreated.Branch, accountCreated.Number, accountCreated.CreatedAt, accountCreated.UpdatedAt);
             return accountCreatedDTO;
         }
+
+        public Task<List<Account>> GetAllAccountsByPersonId(Guid personId)
+        {  
+            return _accountRepository.GetAllByPeopleId(personId);
+            
+        }
     }
 }

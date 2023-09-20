@@ -14,6 +14,7 @@ namespace CubosBankAPI.Domain.Repositories
         Task<decimal> GetBalance(Guid id);
         Task<Account> GetByNumberAsync(string number);
         Task<Account> GetByIdAsync(Guid id);
+        Task<List<Account>> GetAllByPeopleId(Guid personId);
         Task EditAsync(Account account);
         Task DeleteAsync(Account account);
         Task<bool> AccountExists(string number);

@@ -48,6 +48,11 @@ namespace CubosBankAPI.Infra.Data.Repositories
             return await _context.Accounts.ToListAsync();
         }
 
+        public Task<List<Account>> GetAllByPeopleId(Guid personId)
+        {
+           return Task.FromResult(_context.Accounts.Where(p => p.PersonId == personId).ToList());
+        }
+
         public async Task<decimal> GetBalance(Guid id)
 
         {
