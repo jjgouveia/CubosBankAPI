@@ -22,11 +22,16 @@ namespace CubosBankAPI.Domain.Entities
         {
             Validations(number, branch, personId);
             this.Balance = 0;
+            Cards = new List<Card>();
+            Transactions = new List<Transaction>();
         }
 
         private Account()
         {
             this.Balance = 0;
+            Cards = new List<Card>();
+            Transactions = new List<Transaction>();
+
         }
 
         private void Validations(string number, string branch, Guid personId)

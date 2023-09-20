@@ -21,6 +21,9 @@ namespace CubosBankAPI.Domain.Entities
         public Person(string name, string document, string password)
         {
             Validations(name, document, password);
+            Accounts = new List<Account>();
+            Cards = new List<Card>();
+            Transactions = new List<Transaction>();
         }
 
         private void Validations(string name, string document, string password)
