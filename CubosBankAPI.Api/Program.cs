@@ -1,3 +1,4 @@
+using CubosBankAPI.Api.Infra.IoC;
 using CubosBankAPI.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,9 +17,12 @@ namespace CubosBankAPI.Api
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            /*
             builder.Services.AddEntityFrameworkNpgsql().AddDbContext<CubosBankDbContext>(opt =>
-                opt.UseNpgsql(builder.Configuration.GetConnectionString("CubosBankDbConnection")));
-
+                opt.UseNpgsql(builder.Configuration.GetConnectionString("CubosBankDbConnection
+            */
+            builder.Services.AddInfrastructure(builder.Configuration);
+            
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
