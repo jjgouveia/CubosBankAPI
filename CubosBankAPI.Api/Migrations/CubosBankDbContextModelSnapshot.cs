@@ -92,8 +92,9 @@ namespace CubosBankAPI.Api.Migrations
                         .HasColumnType("character varying(3)")
                         .HasColumnName("cvv");
 
-                    b.Property<int>("CardType")
-                        .HasColumnType("integer")
+                    b.Property<string>("CardType")
+                        .IsRequired()
+                        .HasColumnType("text")
                         .HasColumnName("card_type");
 
                     b.Property<DateTime>("CreatedAt")

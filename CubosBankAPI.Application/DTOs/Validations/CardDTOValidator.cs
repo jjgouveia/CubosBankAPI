@@ -12,9 +12,6 @@ namespace CubosBankAPI.Application.DTOs.Validations
     {
         public CardDTOValidator()
         {
-            RuleFor(p => p.AccountId)
-                .NotEmpty().NotNull()
-                .WithMessage("O id da conta é obrigatório");
 
             RuleFor(p => p.Number)
                 .NotEmpty().NotNull()
@@ -49,9 +46,15 @@ namespace CubosBankAPI.Application.DTOs.Validations
 
             RuleFor(p => p.CardType)
                 .NotEmpty()
-                .Must(cardType => Enum.IsDefined(typeof(CardType), cardType))
                 .NotNull()
-                .WithMessage("O tipo do cartão é obrigatório e deve ser " + string.Join(" ou ", Enum.GetNames(typeof(CardType))));
+                .ChildRules(cardType =>
+                {
+                    cardType.RuleFor(p => p).Must(cardType =>
+                    {
+                        return string.Equals(cardType, "physical", StringComparison.OrdinalIgnoreCase)
+                            || string.Equals(cardType, "virtual", StringComparison.OrdinalIgnoreCase);
+                    }).WithMessage("CardType deve ser 'physical' ou 'virtual'");
+                }).WithMessage("CardType é obrigatório"); 
         }
     }
 }

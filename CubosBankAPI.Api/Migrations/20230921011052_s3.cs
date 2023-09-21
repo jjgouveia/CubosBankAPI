@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CubosBankAPI.Api.Migrations
 {
     /// <inheritdoc />
-    public partial class s2 : Migration
+    public partial class s3 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -55,7 +55,7 @@ namespace CubosBankAPI.Api.Migrations
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false),
-                    card_type = table.Column<int>(type: "integer", nullable: false),
+                    card_type = table.Column<string>(type: "text", nullable: false),
                     number = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
                     cvv = table.Column<string>(type: "character varying(3)", maxLength: 3, nullable: false),
                     account_id = table.Column<Guid>(type: "uuid", nullable: false),

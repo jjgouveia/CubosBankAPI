@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CubosBankAPI.Api.Migrations
 {
     [DbContext(typeof(CubosBankDbContext))]
-    [Migration("20230921004910_s2")]
-    partial class s2
+    [Migration("20230921011052_s3")]
+    partial class s3
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -95,8 +95,9 @@ namespace CubosBankAPI.Api.Migrations
                         .HasColumnType("character varying(3)")
                         .HasColumnName("cvv");
 
-                    b.Property<int>("CardType")
-                        .HasColumnType("integer")
+                    b.Property<string>("CardType")
+                        .IsRequired()
+                        .HasColumnType("text")
                         .HasColumnName("card_type");
 
                     b.Property<DateTime>("CreatedAt")

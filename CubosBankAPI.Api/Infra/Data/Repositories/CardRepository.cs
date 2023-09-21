@@ -46,7 +46,7 @@ namespace CubosBankAPI.Infra.Data.Repositories
 
         public Task<bool> GetPhysicalCardsByAccountIdAsync(Guid accountId)
         {
-            return _context.Cards.AnyAsync(x => x.AccountId == accountId && x.CardType == CardType.Physical);
+            return _context.Cards.AnyAsync(x => x.AccountId == accountId && x.CardType == "physical");
         }
     }
 }

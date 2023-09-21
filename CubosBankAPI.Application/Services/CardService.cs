@@ -40,12 +40,12 @@ namespace CubosBankAPI.Application.Services
             var cardDTO = new CardDTO(card.CardType, card.Number, card.CVV);
             var validator = new CardDTOValidator().Validate(cardDTO);
 
-            //if (!validator.IsValid)
-            //{
-            //    throw new Exception(string.Join(". ", validator.Errors.Select(x => x.ErrorMessage)));
-            //}
+            if (!validator.IsValid)
+            {
+                throw new Exception(string.Join(". ", validator.Errors.Select(x => x.ErrorMessage)));
+            }
 
-            if (card.CardType == CardType.Physical)
+            if (card.CardType == "physical")
             {
                 var physicalCards = await _cardRepository.GetPhysicalCardsByAccountIdAsync(card.AccountId);
 
@@ -62,10 +62,8 @@ namespace CubosBankAPI.Application.Services
 
         //public async Task<List<CardDTOResponse>> GetAllCardsByAccountId(Guid accountId)
         //{
-        //    // Obtenha a lista de cartões associados à conta com base no accountId
         //    var cards = await _cardRepository.GetCardsByAccountIdAsync(accountId);
 
-        //    // Mapeie os cartões para DTOs de resposta
         //    var cardDTOs = cards.Select(card => new CardDTOResponse(card.Id, card.CardType, card.Number, card.CVV, card.CreatedAt, card.UpdatedAt)).ToList();
 
         //    return cardDTOs;

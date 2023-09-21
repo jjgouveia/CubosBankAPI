@@ -9,12 +9,11 @@ namespace CubosBankAPI.Application.DTOs.RequestDTO
 {
     public class CardDTORequestCreation
     {
-        public CardType CardType { get; set; }
+        public string CardType { get; set; }
         public string Number { get; set; }
-
         public string CVV { get; set; }
 
-        public CardDTORequestCreation(CardType cardtype, string number, string cvv)
+        public CardDTORequestCreation(string cardtype, string number, string cvv)
         {
             CardType = cardtype;
             Number = number;

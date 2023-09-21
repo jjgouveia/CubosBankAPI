@@ -10,13 +10,13 @@ namespace CubosBankAPI.Application.DTOs.ResponseDTO
     public class CardDTOResponse
     {
         public Guid Id { get; set; }
-        public CardType CardType { get; set; }
+        public string CardType { get; set; }
         public string Number { get; set; }
         public string CVV { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
 
-        public CardDTOResponse(Guid id, CardType cardtype, string number, string cvv, DateTime createdAt, DateTime updatedAt)
+        public CardDTOResponse(Guid id, string cardtype, string number, string cvv, DateTime createdAt, DateTime updatedAt)
         {
             Id = id;
             CardType = cardtype;
