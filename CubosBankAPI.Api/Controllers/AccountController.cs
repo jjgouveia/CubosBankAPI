@@ -29,6 +29,20 @@ namespace CubosBankAPI.Api.Controllers
                 return BadRequest(ex.Message);
             }
         }
-  
+
+        [HttpGet("{accountId}/cards")]
+        public async Task<ActionResult> GetAllCardsByAccountId([FromRoute] Guid accountId)
+        {
+            try
+            {
+                var cards = await _cardService.GetAllCardsByAccountId(accountId);
+                return Ok(cards);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
+
 }

@@ -39,6 +39,11 @@ namespace CubosBankAPI.Infra.Data.Repositories
            return await _context.Cards.ToListAsync();
         }
 
+        public Task<List<Card>> GetAllCardsByAccountId(Guid accountId)
+        {
+            return Task.FromResult(_context.Cards.Where(p => p.AccountId == accountId).ToList());
+        }
+
         public Task<Card> GetByIdAsync(Guid id)
         {
             return _context.Cards.FirstOrDefaultAsync(p => p.Id == id);

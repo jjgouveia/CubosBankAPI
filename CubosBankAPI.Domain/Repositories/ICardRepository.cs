@@ -11,6 +11,7 @@ namespace CubosBankAPI.Domain.Repositories
     {
         Task<Card> CreateAsync(Card card);
         Task<ICollection<Card>> GetAllAsync();
+        Task<List<Card>> GetAllCardsByAccountId(Guid accountId);
         Task<Card> GetByIdAsync(Guid id);
         Task DeleteAsync(int id);
         Task<bool> GetPhysicalCardsByAccountIdAsync(Guid accountId);

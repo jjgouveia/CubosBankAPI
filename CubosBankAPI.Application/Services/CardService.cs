@@ -60,13 +60,13 @@ namespace CubosBankAPI.Application.Services
             return new CardDTOResponse(createdCard.Id, createdCard.CardType, createdCard.Number, createdCard.CVV, createdCard.CreatedAt, createdCard.UpdatedAt);
         }
 
-        //public async Task<List<CardDTOResponse>> GetAllCardsByAccountId(Guid accountId)
-        //{
-        //    var cards = await _cardRepository.GetCardsByAccountIdAsync(accountId);
+        public async Task<List<CardDTOResponse>> GetAllCardsByAccountId(Guid accountId)
+        {
+            var cards = await _cardRepository.GetAllCardsByAccountId(accountId);
 
-        //    var cardDTOs = cards.Select(card => new CardDTOResponse(card.Id, card.CardType, card.Number, card.CVV, card.CreatedAt, card.UpdatedAt)).ToList();
+            var cardDTOs = cards.Select(card => new CardDTOResponse(card.Id, card.CardType, card.Number, card.CVV, card.CreatedAt, card.UpdatedAt)).ToList();
 
-        //    return cardDTOs;
-        //}
+            return cardDTOs;
+        }
     }
 }

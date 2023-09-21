@@ -11,6 +11,6 @@ namespace CubosBankAPI.Application.Services.Interfaces
     public interface ICardService
     {
         Task<CardDTOResponse> CreateCard(Card card);
-        //Task<List<CardDTOResponse>> GetAllCardsByAccountId(Guid accountId);
+        Task<List<CardDTOResponse>> GetAllCardsByAccountId(Guid accountId);
     }
 }
