@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CubosBankAPI.Api.Migrations
 {
     /// <inheritdoc />
-    public partial class s : Migration
+    public partial class s2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -33,7 +33,7 @@ namespace CubosBankAPI.Api.Migrations
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false),
                     person_id = table.Column<Guid>(type: "uuid", nullable: false),
-                    branch = table.Column<string>(type: "text", nullable: false),
+                    branch = table.Column<string>(type: "character varying(3)", maxLength: 3, nullable: false),
                     number = table.Column<string>(type: "character varying(9)", maxLength: 9, nullable: false),
                     balance = table.Column<decimal>(type: "numeric", nullable: false),
                     created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
@@ -55,12 +55,11 @@ namespace CubosBankAPI.Api.Migrations
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false),
+                    card_type = table.Column<int>(type: "integer", nullable: false),
                     number = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
                     cvv = table.Column<string>(type: "character varying(3)", maxLength: 3, nullable: false),
-                    balance = table.Column<decimal>(type: "numeric", nullable: false),
                     account_id = table.Column<Guid>(type: "uuid", nullable: false),
-                    person_id = table.Column<Guid>(type: "uuid", nullable: false),
-                    card_type = table.Column<int>(type: "integer", nullable: false),
+                    balance = table.Column<decimal>(type: "numeric", nullable: false),
                     created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
                 },
@@ -71,12 +70,6 @@ namespace CubosBankAPI.Api.Migrations
                         name: "FK_cards_accounts_account_id",
                         column: x => x.account_id,
                         principalTable: "accounts",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_cards_people_person_id",
-                        column: x => x.person_id,
-                        principalTable: "people",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -126,9 +119,10 @@ namespace CubosBankAPI.Api.Migrations
                 column: "account_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_cards_person_id",
+                name: "IX_cards_number",
                 table: "cards",
-                column: "person_id");
+                column: "number",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_people_document",

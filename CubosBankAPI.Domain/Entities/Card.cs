@@ -10,14 +10,12 @@ namespace CubosBankAPI.Domain.Entities
 {
     public sealed class Card : BaseEntity
     {
+        public CardType CardType { get; set; }
         public string Number { get; private set; }
         public string CVV { get; private set; }
+        public Guid AccountId { get; set; }
         public decimal Balance { get; private set; }
-        public Guid AccountId { get; private set; }
-        public Guid PersonId { get; private set; }
-        public CardType CardType { get; set; }
         public Account Account { get; set; }
-        public Person Person { get; set; }
 
         private Card()
         {
@@ -26,16 +24,18 @@ namespace CubosBankAPI.Domain.Entities
 
         public Card(CardType cardType, string number, string cvv, Guid accountId)
         {
-            Validations(number, cvv, accountId, cardType);
+            Validations(number, cvv, cardType, accountId);
             Balance = 0;
         }
 
-        private void Validations(string number, string cvv, Guid accountId, CardType cardType)
+        private void Validations(string number, string cvv, CardType cardType, Guid accountId)
         {
             DomainValidationException.When(string.IsNullOrEmpty(number), "Number is mandatory.");
             DomainValidationException.When(string.IsNullOrEmpty(cvv), "CVV is mandatory.");
-            DomainValidationException.When(accountId == Guid.Empty, "AccountId is mandatory.");            
-            DomainValidationException.When(Enum.IsDefined(typeof(CardType), cardType), "CardType is mandatory.");
+            DomainValidationException.When(accountId == Guid.Empty, "AccountId is mandatory.");
+            DomainValidationException.When(cardType != CardType.Physical && cardType != CardType.Virtual, "CardType must be 'Physical' or 'Virtual'.");
+
+
 
             Number = number;
             CVV = cvv;

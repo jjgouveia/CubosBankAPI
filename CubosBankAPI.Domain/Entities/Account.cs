@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CubosBankAPI.Domain.Entities
 {
@@ -15,7 +13,7 @@ namespace CubosBankAPI.Domain.Entities
         public decimal Balance { get; private set; }
 
         public Person Person { get; set; }
-        public ICollection<Card> Cards { get; set; }
+        public ICollection<Card> Cards { get; private set; }
         public ICollection<Transaction> Transactions { get; set; }
 
         public Account(string branch, string number, Guid personId)
@@ -31,7 +29,6 @@ namespace CubosBankAPI.Domain.Entities
             this.Balance = 0;
             Cards = new List<Card>();
             Transactions = new List<Transaction>();
-
         }
 
         private void Validations(string branch, string number, Guid personId)
@@ -43,9 +40,16 @@ namespace CubosBankAPI.Domain.Entities
             Branch = branch;
             Number = number;
             PersonId = personId;
-        } 
-        
-    }
+        }
 
-    
+        //public void AssignPhysicalCard(Card card)
+        //{
+        //    if (Cards.Any(c => c.CardType == CardType.Physical))
+        //    {
+        //        throw new InvalidOperationException("Esta conta já possui um cartão físico.");
+        //    }
+
+        //    Cards.Add(card);
+        //}
+    }
 }

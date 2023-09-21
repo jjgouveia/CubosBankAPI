@@ -1,4 +1,5 @@
-﻿using CubosBankAPI.Domain.Entities;
+﻿using CubosBankAPI.Domain;
+using CubosBankAPI.Domain.Entities;
 using CubosBankAPI.Domain.Repositories;
 using CubosBankAPI.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +26,8 @@ namespace CubosBankAPI.Infra.Data.Repositories
             return card;
         }
 
+     
+
         public async Task DeleteAsync(int id)
         {
             _context.Remove(id);
@@ -39,6 +42,11 @@ namespace CubosBankAPI.Infra.Data.Repositories
         public Task<Card> GetByIdAsync(Guid id)
         {
             return _context.Cards.FirstOrDefaultAsync(p => p.Id == id);
+        }
+
+        public Task<bool> GetPhysicalCardsByAccountIdAsync(Guid accountId)
+        {
+            return _context.Cards.AnyAsync(x => x.AccountId == accountId && x.CardType == CardType.Physical);
         }
     }
 }

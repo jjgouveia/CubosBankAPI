@@ -30,7 +30,7 @@ namespace CubosBankAPI.Api.Infra.IoC
 
             services.AddScoped<IPersonService, PersonService>();
             services.AddScoped<IAccountService, AccountService>();
-            //services.AddScoped<ICardService, CardService>();
+            services.AddScoped<ICardService, CardService>();
             //services.AddScoped<ITransactionService, TransactionService>();
 
             return services;

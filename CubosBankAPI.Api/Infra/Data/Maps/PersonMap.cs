@@ -23,7 +23,6 @@ namespace CubosBankAPI.Infra.Data.Maps
            builder.Property(x => x.Password).HasColumnName("password").HasMaxLength(20).IsRequired();
 
            builder.HasMany(x => x.Accounts).WithOne(x => x.Person).HasForeignKey(x => x.PersonId);
-           builder.HasMany(x => x.Cards).WithOne(x => x.Person).HasForeignKey(x => x.PersonId);
         }
     }
 }

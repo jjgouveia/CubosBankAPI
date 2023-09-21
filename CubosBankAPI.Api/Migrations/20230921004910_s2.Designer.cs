@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CubosBankAPI.Api.Migrations
 {
     [DbContext(typeof(CubosBankDbContext))]
-    [Migration("20230920195032_s")]
-    partial class s
+    [Migration("20230921004910_s2")]
+    partial class s2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,7 +38,8 @@ namespace CubosBankAPI.Api.Migrations
 
                     b.Property<string>("Branch")
                         .IsRequired()
-                        .HasColumnType("text")
+                        .HasMaxLength(3)
+                        .HasColumnType("character varying(3)")
                         .HasColumnName("branch");
 
                     b.Property<DateTime>("CreatedAt")
@@ -110,10 +111,6 @@ namespace CubosBankAPI.Api.Migrations
                         .HasColumnType("character varying(20)")
                         .HasColumnName("number");
 
-                    b.Property<Guid>("PersonId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("person_id");
-
                     b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("timestamp with time zone")
@@ -124,7 +121,8 @@ namespace CubosBankAPI.Api.Migrations
 
                     b.HasIndex("AccountId");
 
-                    b.HasIndex("PersonId");
+                    b.HasIndex("Number")
+                        .IsUnique();
 
                     b.ToTable("cards", (string)null);
                 });
@@ -237,15 +235,7 @@ namespace CubosBankAPI.Api.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CubosBankAPI.Domain.Entities.Person", "Person")
-                        .WithMany("Cards")
-                        .HasForeignKey("PersonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Account");
-
-                    b.Navigation("Person");
                 });
 
             modelBuilder.Entity("CubosBankAPI.Domain.Entities.Transaction", b =>
@@ -273,8 +263,6 @@ namespace CubosBankAPI.Api.Migrations
             modelBuilder.Entity("CubosBankAPI.Domain.Entities.Person", b =>
                 {
                     b.Navigation("Accounts");
-
-                    b.Navigation("Cards");
 
                     b.Navigation("Transactions");
                 });
